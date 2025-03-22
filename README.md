@@ -1,64 +1,64 @@
-# Project Management Platform
+# Todoist Clone - Project Management Platform
 
-A modern project management platform built with React, Redux Toolkit, and TypeScript. This application allows users to create projects, manage tasks, view overall progress, and customize their profiles.
+Учебный проект по созданию менеджера задач (клон Todoist), реализованный с использованием современного стека технологий React.
 
-## Features
+## Используемые технологии
 
-- **Authentication**: Register, login, and logout
-- **Project Management**: Create, edit, delete, and view projects
-- **Task Management**: Add, edit, delete, and assign tasks within projects
-- **Dashboard**: Overview of all projects and tasks
-- **Settings**: Edit user profile, change password, and select interface language
+- **React** (v18) с TypeScript
+- **Vite** - быстрый сборщик приложений
+- **Feature-Sliced Design** (FSD) - архитектурная методология
+- **Redux Toolkit** - управление состоянием
+- **SWR** - для работы с данными и кэшированием
+- **Material UI** - компоненты интерфейса
+- **i18next** - интернационализация
+- **SCSS Modules** - стилизация компонентов
 
-## Tech Stack
+## Особенности проекта
 
-### Frontend
-- **React 18**: Core UI library (with hooks)
-- **Redux Toolkit**: Global state management
-- **SWR**: Server data fetching and caching
-- **React Router**: Page routing
-- **TypeScript**: Static typing
-- **MUI (Material-UI)**: UI components
-- **Bootstrap**: Styling utilities
-- **i18next**: Multilingual support
+- Управление задачами (создание, редактирование, удаление, изменение статуса)
+- Организация задач по проектам
+- Назначение приоритетов и сроков выполнения
+- Многоязычность (русский и английский)
+- Локальное хранение данных (localStorage)
 
-## Project Structure
-
-The application follows a modular architecture inspired by feature-sliced design:
+## Структура проекта (Feature-Sliced Design)
 
 ```
 src/
-├── components/       # Common UI components
-├── features/         # Functional modules
-│   ├── auth/         # Authentication logic
-│   ├── projects/     # Project management
-│   ├── tasks/        # Task management
-│   ├── dashboard/    # Dashboard
-│   └── settings/     # Settings
-├── hooks/            # Custom hooks
-├── store/            # Redux store and slices
-├── services/         # API services
-├── utils/            # Utilities
-├── locales/          # Translation files
-├── routes/           # Route configuration
-└── tests/            # Tests
+├── app/              # Настройка приложения (провайдеры, тема)
+├── entities/         # Базовые сущности (Task, Project)
+│   ├── task/         # Сущность задачи
+│   └── project/      # Сущность проекта
+├── features/         # Функциональные модули
+│   ├── task-list/    # Список задач
+│   ├── task-form/    # Форма создания/редактирования задач
+│   └── project-form/ # Форма создания/редактирования проектов
+├── widgets/          # Композиционные компоненты
+│   ├── header/       # Шапка приложения
+│   └── sidebar/      # Боковая панель
+├── pages/            # Страницы приложения
+│   └── home/         # Главная страница
+└── shared/           # Общие утилиты и конфигурации
+    ├── config/       # Настройки (i18n)
+    ├── lib/          # Утилиты (store)
+    └── api/          # Работа с API
 ```
 
-## Getting Started
+## Запуск проекта
 
-1. Clone the repository
-2. Install dependencies:
-   ```
-   npm install
-   ```
-3. Start the development server:
-   ```
-   npm run dev
-   ```
+1. Клонируйте репозиторий
+2. Установите зависимости: `npm install`
+3. Запустите проект: `npm run dev`
+4. Откройте браузер по адресу: `http://localhost:5173`
 
-## Available Scripts
+## Дальнейшее развитие
 
-- `npm run dev`: Start development server
-- `npm run build`: Build for production
-- `npm run lint`: Run ESLint
-- `npm run preview`: Preview production build
+Проект является отправной точкой для изучения React и современных инструментов разработки. Возможные направления для развития:
+
+- Добавление аутентификации пользователей
+- Синхронизация с серверным API
+- Добавление меток для задач
+- Реализация фильтрации и поиска
+- Создание повторяющихся задач
+- Интеграция с календарем
+- Добавление уведомлений

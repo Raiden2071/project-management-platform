@@ -1,0 +1,37 @@
+.drawer {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.drawerPaper {
+  width: 240px;
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  justify-content: center;
+}
+
+.projectsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+.projectsList {
+  padding-top: 0;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.emptyText {
+  padding: 16px;
+  text-align: center;
+} 

@@ -1,0 +1,21 @@
+.header {
+  z-index: 1200;
+}
+
+.menuButton {
+  margin-right: 16px;
+}
+
+.title {
+  flex-grow: 1;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.addButton {
+  margin-right: 8px;
+} 
