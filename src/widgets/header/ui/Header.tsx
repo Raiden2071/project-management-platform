@@ -36,8 +36,6 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, onAddTask }) =>
     i18n.changeLanguage(lang);
     handleLanguageMenuClose();
   };
-
-  console.log(i18n.language);
   
   return (
     <AppBar position="fixed" className={styles.header}>
