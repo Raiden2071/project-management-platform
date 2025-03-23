@@ -4,10 +4,10 @@ export interface Task {
   description?: string;
   completed: boolean;
   priority: 'low' | 'medium' | 'high';
-  dueDate?: string; // ISO формат даты
+  dueDate?: string;
   projectId?: string;
-  projectName?: string; // Название проекта для отображения
-  createdAt: string; // ISO формат даты
+  projectName?: string;
+  createdAt: string;
 }
 
 export type TaskFormData = Omit<Task, 'id' | 'createdAt'>;
@@ -18,7 +18,6 @@ export interface TasksState {
   error: string | null;
 }
 
-// Перечисление для фильтров задач
 export enum TaskFilter {
   ALL = 'all',
   COMPLETED = 'completed',

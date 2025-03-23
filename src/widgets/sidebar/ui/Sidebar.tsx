@@ -9,12 +9,14 @@ import {
   Button,
   Typography,
   Box,
-  CircularProgress
+  CircularProgress,
+  ListItemButton
 } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AddIcon from '@mui/icons-material/Add';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import FolderIcon from '@mui/icons-material/Folder';
-import AddIcon from '@mui/icons-material/Add';
 import { useTranslation } from 'react-i18next';
 import { Project } from '../../../entities/project/model/types';
 import styles from './Sidebar.module.scss';
@@ -56,21 +58,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <Divider />
       
       <List>
-        {/* Главная */}
-        <ListItem>
+       <ListItemButton>
+          <ListItemIcon>
+            <AddCircleIcon />
+          </ListItemIcon>
+          <ListItemText primary={t('tasks.add')} />
+        </ListItemButton>
+
+        <ListItemButton>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText primary={t('nav.home')} />
-        </ListItem>
+        </ListItemButton>
         
-        {/* Задачи */}
-        <ListItem>
+        <ListItemButton>
           <ListItemIcon>
             <FormatListBulletedIcon />
           </ListItemIcon>
           <ListItemText primary={t('nav.tasks')} />
-        </ListItem>
+        </ListItemButton>
       </List>
       
       <Divider />

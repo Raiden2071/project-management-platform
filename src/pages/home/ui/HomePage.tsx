@@ -98,7 +98,7 @@ export const HomePage: React.FC = () => {
         onToggleSidebar={handleToggleSidebar}
         onAddTask={handleAddTask}
       />
-      
+
       <Sidebar
         open={sidebarOpen}
         loading={projectsLoading}
@@ -106,7 +106,7 @@ export const HomePage: React.FC = () => {
         onAddProject={handleAddProject}
         onProjectSelect={handleSelectProject}
       />
-      
+
       <main className={`${styles.content} ${sidebarOpen ? styles.contentShift : ''}`}>
         <div className={styles.toolbar} />
         

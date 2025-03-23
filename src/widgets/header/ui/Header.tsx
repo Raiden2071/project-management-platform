@@ -78,6 +78,20 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, onAddTask }) =>
             anchorEl={langMenuAnchor}
             open={Boolean(langMenuAnchor)}
             onClose={handleLanguageMenuClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            PaperProps={{
+              sx: {
+                mt: 1,
+                minWidth: 120,
+              }
+            }}
           >
             <MenuItem 
               onClick={() => changeLanguage('en')}
