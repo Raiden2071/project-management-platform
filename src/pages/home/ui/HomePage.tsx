@@ -16,28 +16,23 @@ import styles from './HomePage.module.scss';
 export const HomePage: React.FC = () => {
   const { t } = useTranslation();
   
-  // Состояние UI
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [taskFormOpen, setTaskFormOpen] = useState(false);
   const [projectFormOpen, setProjectFormOpen] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   
-  // Получение данных с помощью SWR
   const { tasks, isLoading: tasksLoading, error: tasksError } = useTasks();
   const { projects, isLoading: projectsLoading } = useProjects();
   
-  // Находим выбранную задачу для редактирования
   const selectedTask = selectedTaskId 
     ? tasks.find(task => task.id === selectedTaskId) 
     : null;
   
-  // Находим выбранный проект для фильтрации задач
   const filteredTasks = selectedProjectId
     ? tasks.filter(task => task.projectId === selectedProjectId)
     : tasks;
   
-  // Обработчики действий
   const handleToggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -93,7 +88,6 @@ export const HomePage: React.FC = () => {
     setSelectedProjectId(projectId === selectedProjectId ? null : projectId);
   };
   
-  // Заголовок страницы (зависит от выбранного проекта)
   const pageTitle = selectedProjectId 
     ? `${t('tasks.title')} - ${projects.find(p => p.id === selectedProjectId)?.name}`
     : t('tasks.title');
@@ -145,7 +139,6 @@ export const HomePage: React.FC = () => {
         </Container>
       </main>
       
-      {/* Формы в модальных окнах */}
       <TaskForm
         open={taskFormOpen}
         onClose={handleTaskFormClose}

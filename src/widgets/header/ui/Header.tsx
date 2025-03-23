@@ -36,6 +36,8 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, onAddTask }) =>
     i18n.changeLanguage(lang);
     handleLanguageMenuClose();
   };
+
+  console.log(i18n.language);
   
   return (
     <AppBar position="fixed" className={styles.header}>
@@ -79,8 +81,18 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, onAddTask }) =>
             open={Boolean(langMenuAnchor)}
             onClose={handleLanguageMenuClose}
           >
-            <MenuItem onClick={() => changeLanguage('ru')}>Русский</MenuItem>
-            <MenuItem onClick={() => changeLanguage('en')}>English</MenuItem>
+            <MenuItem 
+              onClick={() => changeLanguage('en')}
+              className={i18n.language === 'en' ? styles.activeLanguage : styles.inactiveLanguage}
+            >
+              English
+            </MenuItem>
+            <MenuItem 
+              onClick={() => changeLanguage('ua')}
+              className={i18n.language === 'ua' ? styles.activeLanguage : styles.inactiveLanguage}
+            >
+              Українська
+            </MenuItem>
           </Menu>
         </Box>
       </Toolbar>

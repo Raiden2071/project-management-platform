@@ -43,7 +43,6 @@ export const TaskForm: React.FC<TaskFormProps> = ({
   const [projectId, setProjectId] = useState<string | undefined>(undefined);
   const [titleError, setTitleError] = useState('');
   
-  // Используем initialValues для заполнения формы при редактировании
   useEffect(() => {
     if (initialValues) {
       setTitle(initialValues.title);
@@ -52,7 +51,6 @@ export const TaskForm: React.FC<TaskFormProps> = ({
       setDueDate(initialValues.dueDate ? new Date(initialValues.dueDate) : null);
       setProjectId(initialValues.projectId);
     } else {
-      // Сбрасываем форму при создании новой задачи
       setTitle('');
       setDescription('');
       setPriority('medium');

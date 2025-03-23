@@ -8,7 +8,7 @@ import { enUS } from 'date-fns/locale';
 import { store } from '../../shared/lib/store';
 import '../../shared/config/i18n';
 
-// Создаем тему Material UI
+// Material UI
 const theme = createTheme({
   palette: {
     primary: {
@@ -20,7 +20,7 @@ const theme = createTheme({
   },
 });
 
-// Конфигурация SWR
+// SWR
 const swrConfig = {
   fetcher: (url: string) => fetch(url).then(res => res.json()),
   revalidateOnFocus: false,

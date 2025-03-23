@@ -45,6 +45,48 @@ const resources = {
       'projects.color': 'Color',
     },
   },
+  ua: {
+    translation: {
+      'app.title': 'Менеджер завдань',
+      'app.loading': 'Завантаження...',
+      'app.error': 'Помилка',
+      'nav.home': 'Головна',
+      'nav.tasks': 'Завдання',
+      'nav.projects': 'Проєкти',
+      'tasks.title': 'Мої завдання',
+      'tasks.add': 'Додати завдання',
+      'tasks.edit': 'Редагувати завдання',
+      'tasks.empty': 'Поки що немає завдань',
+      'tasks.search': 'Пошук завдань',
+      'tasks.filter': 'Фільтр',
+      'tasks.sort': 'Сортування',
+      'tasks.dueDate': 'Крайній термін',
+      'tasks.noDueDate': 'Без терміну',
+      'tasks.priority': 'Пріоритет',
+      'tasks.completed': 'Виконано',
+      'tasks.uncompleted': 'Не виконано',
+      'priority.low': 'Низький',
+      'priority.medium': 'Середній',
+      'priority.high': 'Високий',
+      'form.save': 'Зберегти',
+      'form.cancel': 'Скасувати',
+      'form.delete': 'Видалити',
+      'form.title': 'Заголовок',
+      'form.description': 'Опис',
+      'form.project': 'Проєкт',
+      'form.titleRequired': 'Заголовок є обов’язковим',
+      'form.nameRequired': 'Ім’я є обов’язковим',
+      'form.noProject': 'Без проєкту',
+      'form.selectProject': 'Оберіть проєкт або залиште порожнім',
+      'form.selectColor': 'Оберіть колір для вашого проєкту',
+      'projects.title': 'Мої проєкти',
+      'projects.add': 'Додати проєкт',
+      'projects.edit': 'Редагувати проєкт',
+      'projects.empty': 'Поки що немає проєктів',
+      'projects.name': 'Назва проєкту',
+      'projects.color': 'Колір',
+    },
+  },
 };
 
 i18n
@@ -58,4 +100,4 @@ i18n
     },
   });
 
-export default i18n; 
+export default i18n;

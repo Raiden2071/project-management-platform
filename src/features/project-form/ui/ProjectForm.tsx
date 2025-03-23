@@ -22,7 +22,6 @@ interface ProjectFormProps {
   initialValues?: Project;
 }
 
-// Предустановленные цвета для проектов
 const colorPresets = [
   '#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3',
   '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF'
@@ -40,13 +39,11 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
   const [color, setColor] = useState('#FCB900');
   const [nameError, setNameError] = useState('');
   
-  // Используем initialValues для заполнения формы при редактировании
   useEffect(() => {
     if (initialValues) {
       setName(initialValues.name);
       setColor(initialValues.color || '#FCB900');
     } else {
-      // Сбрасываем форму при создании нового проекта
       setName('');
       setColor('#FCB900');
     }

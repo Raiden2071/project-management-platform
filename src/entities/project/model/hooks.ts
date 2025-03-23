@@ -2,11 +2,9 @@ import useSWR, { mutate } from 'swr';
 import { Project } from './types';
 import { projectsApi } from '../../../shared/api/projects';
 
-// Ключи для SWR
 const PROJECTS_KEY = 'projects';
 const PROJECT_KEY = 'project';
 
-// Хук для получения списка проектов
 export const useProjects = () => {
   const { data, error, isLoading } = useSWR(PROJECTS_KEY, projectsApi.getProjects);
   

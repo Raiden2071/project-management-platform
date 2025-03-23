@@ -1,64 +1,64 @@
-# Todoist Clone - Project Management Platform
+# Todoist Clone - Project Management Platform  
 
-Учебный проект по созданию менеджера задач (клон Todoist), реализованный с использованием современного стека технологий React.
+A learning project for creating a task manager (Todoist clone) using a modern React technology stack.  
 
-## Используемые технологии
+## Technologies Used  
 
-- **React** (v18) с TypeScript
-- **Vite** - быстрый сборщик приложений
-- **Feature-Sliced Design** (FSD) - архитектурная методология
-- **Redux Toolkit** - управление состоянием
-- **SWR** - для работы с данными и кэшированием
-- **Material UI** - компоненты интерфейса
-- **i18next** - интернационализация
-- **SCSS Modules** - стилизация компонентов
+- **React** (v18) with TypeScript  
+- **Vite** - a fast application bundler  
+- **Feature-Sliced Design** (FSD) - architectural methodology  
+- **Redux Toolkit** - state management  
+- **SWR** - data fetching and caching  
+- **Material UI** - UI components  
+- **i18next** - internationalization  
+- **SCSS Modules** - component styling  
 
-## Особенности проекта
+## Project Features  
 
-- Управление задачами (создание, редактирование, удаление, изменение статуса)
-- Организация задач по проектам
-- Назначение приоритетов и сроков выполнения
-- Многоязычность (русский и английский)
-- Локальное хранение данных (localStorage)
+- Task management (creation, editing, deletion, status updates)  
+- Organizing tasks by projects  
+- Assigning priorities and due dates  
+- Multilingual support (Russian and English)  
+- Local data storage (localStorage)  
 
-## Структура проекта (Feature-Sliced Design)
+## Project Structure (Feature-Sliced Design)  
 
 ```
 src/
-├── app/              # Настройка приложения (провайдеры, тема)
-├── entities/         # Базовые сущности (Task, Project)
-│   ├── task/         # Сущность задачи
-│   └── project/      # Сущность проекта
-├── features/         # Функциональные модули
-│   ├── task-list/    # Список задач
-│   ├── task-form/    # Форма создания/редактирования задач
-│   └── project-form/ # Форма создания/редактирования проектов
-├── widgets/          # Композиционные компоненты
-│   ├── header/       # Шапка приложения
-│   └── sidebar/      # Боковая панель
-├── pages/            # Страницы приложения
-│   └── home/         # Главная страница
-└── shared/           # Общие утилиты и конфигурации
-    ├── config/       # Настройки (i18n)
-    ├── lib/          # Утилиты (store)
-    └── api/          # Работа с API
+├── app/              # Application setup (providers, theme)
+├── entities/         # Core entities (Task, Project)
+│   ├── task/         # Task entity
+│   └── project/      # Project entity
+├── features/         # Functional modules
+│   ├── task-list/    # Task list
+│   ├── task-form/    # Task creation/editing form
+│   └── project-form/ # Project creation/editing form
+├── widgets/          # Composite components
+│   ├── header/       # Application header
+│   └── sidebar/      # Sidebar
+├── pages/            # Application pages
+│   └── home/         # Home page
+└── shared/           # Common utilities and configurations
+    ├── config/       # Settings (i18n)
+    ├── lib/          # Utilities (store)
+    └── api/          # API interactions
 ```
 
-## Запуск проекта
+## Running the Project  
 
-1. Клонируйте репозиторий
-2. Установите зависимости: `npm install`
-3. Запустите проект: `npm run dev`
-4. Откройте браузер по адресу: `http://localhost:5173`
+1. Clone the repository  
+2. Install dependencies: `npm install`  
+3. Start the project: `npm run dev`  
+4. Open the browser at: `http://localhost:5173`  
 
-## Дальнейшее развитие
+## Future Development  
 
-Проект является отправной точкой для изучения React и современных инструментов разработки. Возможные направления для развития:
+This project serves as a starting point for learning React and modern development tools. Possible future enhancements:  
 
-- Добавление аутентификации пользователей
-- Синхронизация с серверным API
-- Добавление меток для задач
-- Реализация фильтрации и поиска
-- Создание повторяющихся задач
-- Интеграция с календарем
-- Добавление уведомлений
+- Adding user authentication  
+- Synchronization with a backend API  
+- Adding task labels  
+- Implementing filtering and search  
+- Creating recurring tasks  
+- Integration with a calendar  
+- Adding notifications  

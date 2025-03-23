@@ -18,4 +18,14 @@
 
 .addButton {
   margin-right: 8px;
+}
+
+.activeLanguage {
+  color: rgba(0, 0, 0, 0.87) !important;
+  font-weight: 600 !important;
+}
+
+.inactiveLanguage {
+  color: rgba(0, 0, 0, 0.6) !important;
+  font-weight: 400 !important;
 } 
