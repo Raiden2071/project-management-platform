@@ -7,8 +7,7 @@ import { useProjects, projectsMutations } from '../../../entities/project/model/
 import { TaskList } from '../../../features/task-list/ui/TaskList';
 import { TaskForm } from '../../../features/task-form/ui/TaskForm';
 import { ProjectForm } from '../../../features/project-form/ui/ProjectForm';
-import { Header } from '../../../widgets/header/ui/Header';
-import { Sidebar } from '../../../widgets/sidebar/ui/Sidebar';
+import { Layout } from '../../../widgets/layout/ui/Layout';
 import { Task } from '../../../entities/task/model/types';
 import { Project } from '../../../entities/project/model/types';
 import styles from './HomePage.module.scss';
@@ -16,7 +15,6 @@ import styles from './HomePage.module.scss';
 export const HomePage: React.FC = () => {
   const { t } = useTranslation();
   
-  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [taskFormOpen, setTaskFormOpen] = useState(false);
   const [projectFormOpen, setProjectFormOpen] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
@@ -32,10 +30,6 @@ export const HomePage: React.FC = () => {
   const filteredTasks = selectedProjectId
     ? tasks.filter(task => task.projectId === selectedProjectId)
     : tasks;
-  
-  const handleToggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
   
   const handleAddTask = () => {
     setSelectedTaskId(null);
@@ -93,51 +87,39 @@ export const HomePage: React.FC = () => {
     : t('tasks.title');
   
   return (
-    <div className={styles.root}>
-      <Header 
-        onToggleSidebar={handleToggleSidebar}
-        onAddTask={handleAddTask}
-      />
-
-      <Sidebar
-        open={sidebarOpen}
-        loading={projectsLoading}
-        projects={projects}
-        onAddProject={handleAddProject}
-        onProjectSelect={handleSelectProject}
-      />
-
-      <main className={`${styles.content} ${sidebarOpen ? styles.contentShift : ''}`}>
-        <div className={styles.toolbar} />
-        
-        <Container maxWidth="lg" className={styles.container}>
-          <Box className={styles.pageHeader}>
-            <Typography variant="h4" component="h1">
-              {pageTitle}
-            </Typography>
-            
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<AddIcon />}
-              onClick={handleAddTask}
-            >
-              {t('tasks.add')}
-            </Button>
-          </Box>
+    <Layout
+      projects={projects}
+      projectsLoading={projectsLoading}
+      onAddProject={handleAddProject}
+      onProjectSelect={handleSelectProject}
+    >
+      <Container maxWidth="lg" className={styles.container}>
+        <Box className={styles.pageHeader}>
+          <Typography variant="h4" component="h1">
+            {pageTitle}
+          </Typography>
           
-          <Paper elevation={2} className={styles.taskListContainer}>
-            <TaskList
-              tasks={filteredTasks}
-              isLoading={tasksLoading}
-              error={tasksError}
-              onToggle={handleToggleTaskStatus}
-              onEdit={handleEditTask}
-              onDelete={handleDeleteTask}
-            />
-          </Paper>
-        </Container>
-      </main>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<AddIcon />}
+            onClick={handleAddTask}
+          >
+            {t('tasks.add')}
+          </Button>
+        </Box>
+        
+        <Paper elevation={2} className={styles.taskListContainer}>
+          <TaskList
+            tasks={filteredTasks}
+            isLoading={tasksLoading}
+            error={tasksError}
+            onToggle={handleToggleTaskStatus}
+            onEdit={handleEditTask}
+            onDelete={handleDeleteTask}
+          />
+        </Paper>
+      </Container>
       
       <TaskForm
         open={taskFormOpen}
@@ -152,6 +134,6 @@ export const HomePage: React.FC = () => {
         onClose={handleProjectFormClose}
         onSubmit={handleSubmitProject}
       />
-    </div>
+    </Layout>
   );
 }; 
