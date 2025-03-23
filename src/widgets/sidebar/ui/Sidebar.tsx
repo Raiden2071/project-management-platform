@@ -1,24 +1,10 @@
 import React from 'react';
-import {
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  Button,
-  Typography,
-  Box,
-  CircularProgress,
-  ListItemButton
-} from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import AddIcon from '@mui/icons-material/Add';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import FolderIcon from '@mui/icons-material/Folder';
-import { useTranslation } from 'react-i18next';
+import { Drawer, Divider } from '@mui/material';
 import { Project } from '../../../entities/project/model/types';
+import { SidebarHeader } from './SidebarHeader';
+import { NavigationItems } from './NavigationItems';
+import { ProjectsHeader } from './ProjectsHeader';
+import { ProjectsList } from './ProjectsList';
 import styles from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -37,8 +23,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onAddProject,
   onProjectSelect,
 }) => {
-  const { t } = useTranslation();
-
   return (
     <Drawer
       className={styles.drawer}
@@ -49,78 +33,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
         paper: styles.drawerPaper,
       }}
     >
-      <div className={styles.drawerHeader}>
-        <Typography variant="h6" component="div">
-          {t('app.title')}
-        </Typography>
-      </div>
+      <SidebarHeader />
       
       <Divider />
       
-      <List>
-       <ListItemButton>
-          <ListItemIcon>
-            <AddCircleIcon />
-          </ListItemIcon>
-          <ListItemText primary={t('tasks.add')} />
-        </ListItemButton>
-
-        <ListItemButton>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary={t('nav.home')} />
-        </ListItemButton>
-        
-        <ListItemButton>
-          <ListItemIcon>
-            <FormatListBulletedIcon />
-          </ListItemIcon>
-          <ListItemText primary={t('nav.tasks')} />
-        </ListItemButton>
-      </List>
+      <NavigationItems />
       
       <Divider />
       
-      <div className={styles.projectsHeader}>
-        <Typography variant="subtitle2">
-          {t('nav.projects')}
-        </Typography>
-        <Button
-          size="small"
-          startIcon={<AddIcon />}
-          onClick={onAddProject}
-        >
-          {t('projects.add')}
-        </Button>
-      </div>
+      <ProjectsHeader onAddProject={onAddProject} />
       
-      {loading ? (
-        <Box className={styles.loading}>
-          <CircularProgress size={24} />
-        </Box>
-      ) : (
-        <List className={styles.projectsList}>
-          {projects.length === 0 ? (
-            <Typography variant="body2" color="textSecondary" className={styles.emptyText}>
-              {t('projects.empty')}
-            </Typography>
-          ) : (
-            projects.map((project) => (
-              <ListItem 
-                key={project.id}
-                onClick={() => onProjectSelect(project.id)}
-                sx={{ cursor: 'pointer' }}
-              >
-                <ListItemIcon>
-                  <FolderIcon style={{ color: project.color || '#ccc' }} />
-                </ListItemIcon>
-                <ListItemText primary={project.name} />
-              </ListItem>
-            ))
-          )}
-        </List>
-      )}
+      <ProjectsList
+        loading={loading}
+        projects={projects}
+        onProjectSelect={onProjectSelect}
+      />
     </Drawer>
   );
 }; 
