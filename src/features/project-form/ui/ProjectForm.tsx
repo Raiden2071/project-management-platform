@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { Project } from '../../../entities/project/model/types';
 import { TwitterPicker, ColorResult } from 'react-color';
-import styles from './ProjectForm.module.scss';
+import styles from './ProjectFormDialog.module.scss';
 
 interface ProjectFormProps {
   open: boolean;
@@ -27,7 +27,7 @@ const colorPresets = [
   '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF'
 ];
 
-export const ProjectForm: React.FC<ProjectFormProps> = ({
+export const ProjectFormDialog: React.FC<ProjectFormProps> = ({
   open,
   onClose,
   onSubmit,

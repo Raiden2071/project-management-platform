@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { useTasks, tasksMutations } from '../../../entities/task/model/hooks';
 import { useProjects, projectsMutations } from '../../../entities/project/model/hooks';
 import { TaskList } from '../../../features/task-list/ui/TaskList';
-import { TaskForm } from '../../../features/task-form/ui/TaskForm';
-import { ProjectForm } from '../../../features/project-form/ui/ProjectForm';
 import { Layout } from '../../../widgets/layout/ui/Layout';
 import { Task } from '../../../entities/task/model/types';
 import { Project } from '../../../entities/project/model/types';
 import styles from './HomePage.module.scss';
+import { ProjectFormDialog } from '../../../features/project-form/ui/ProjectForm';
+import { TaskFormDialog } from '../../../features/task-form/ui/TaskForm';
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation();
@@ -109,7 +109,7 @@ export const HomePage: React.FC = () => {
           </Button>
         </Box>
         
-        <Paper elevation={2} className={styles.taskListContainer}>
+        <Paper elevation={0} className={styles.taskListContainer}>
           <TaskList
             tasks={filteredTasks}
             isLoading={tasksLoading}
@@ -121,7 +121,7 @@ export const HomePage: React.FC = () => {
         </Paper>
       </Container>
       
-      <TaskForm
+      <TaskFormDialog
         open={taskFormOpen}
         onClose={handleTaskFormClose}
         onSubmit={handleSubmitTask}
@@ -129,11 +129,11 @@ export const HomePage: React.FC = () => {
         projects={projects}
       />
       
-      <ProjectForm
+      <ProjectFormDialog
         open={projectFormOpen}
         onClose={handleProjectFormClose}
         onSubmit={handleSubmitProject}
       />
     </Layout>
   );
-}; 
+};

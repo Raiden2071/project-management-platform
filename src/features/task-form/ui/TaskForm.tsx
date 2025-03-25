@@ -17,7 +17,7 @@ import {
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Task } from '../../../entities/task/model/types';
 import { Project } from '../../../entities/project/model/types';
-import styles from './TaskForm.module.scss';
+import styles from './TaskFormDialog.module.scss';
 
 interface TaskFormProps {
   open: boolean;
@@ -27,7 +27,7 @@ interface TaskFormProps {
   projects: Project[];
 }
 
-export const TaskForm: React.FC<TaskFormProps> = ({
+export const TaskFormDialog: React.FC<TaskFormProps> = ({
   open,
   onClose,
   onSubmit,
