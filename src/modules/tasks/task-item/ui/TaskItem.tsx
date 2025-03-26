@@ -15,7 +15,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import { useTranslation } from 'react-i18next';
 import { format } from 'date-fns';
 import { enUS } from 'date-fns/locale';
-import { Task } from '../model/types';
+import { Task } from '../../model/types';
 import styles from './TaskItem.module.scss';
 
 interface TaskItemProps {
