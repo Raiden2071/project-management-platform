@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
-import tasksReducer from '../../../modules/tasks/model/tasksSlice';
-import projectsReducer from '../../../modules/projects/model/projectsSlice';
+import tasksReducer from '../../modules/tasks/model/tasksSlice';
+import projectsReducer from '../../modules/projects/model/projectsSlice';
 
 export const store = configureStore({
   reducer: {

@@ -5,8 +5,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { SWRConfig } from 'swr';
 import { enUS } from 'date-fns/locale';
-import { store } from '../../shared/lib/store';
-import '../../shared/config/i18n';
+import { store } from '../../redux/store/store';
+import '../../i18n';
 
 // Material UI
 const theme = createTheme({
