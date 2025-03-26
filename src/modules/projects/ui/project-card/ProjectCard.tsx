@@ -2,9 +2,8 @@ import React from 'react';
 import { Card, CardContent, Typography, IconButton, Box } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Project } from '../model/types';
 import styles from './ProjectCard.module.scss';
-
+import { Project } from '../../model/types';
 interface ProjectCardProps {
   project: Project;
   onEdit?: (project: Project) => void;

@@ -1,8 +1,8 @@
 import useSWR, { mutate } from 'swr';
 import { tasksApi } from '../../../shared/api/tasks';
 import { projectsApi } from '../../../shared/api/projects';
-import { Task } from './types';
-import { Project } from '../../../entities/project/model/types';
+import { Project } from '../../projects/model/types';
+import { Task } from '../model/types';
 
 // Keys for SWR
 const TASKS_KEY = 'tasks';

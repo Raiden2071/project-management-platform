@@ -11,7 +11,7 @@ import {
   InputLabel,
   FormHelperText
 } from '@mui/material';
-import { Project } from '../../../entities/project/model/types';
+import { Project } from '../../model/types';
 import { TwitterPicker, ColorResult } from 'react-color';
 import styles from './ProjectFormDialog.module.scss';
 

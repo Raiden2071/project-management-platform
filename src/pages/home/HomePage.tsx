@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Container, Typography, Box, Button, Paper } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useTranslation } from 'react-i18next';
-import { useTasks, tasksMutations } from '../../../modules/tasks/model/hooks';
-import { useProjects, projectsMutations } from '../../../entities/project/model/hooks';
-import { TaskList } from '../../../modules/tasks/task-list/ui/TaskList';
-import { Layout } from '../../../modules/layout/layout/ui/Layout';
-import { Task } from '../../../modules/tasks/model/types';
-import { Project } from '../../../entities/project/model/types';
+import { useTasks, tasksMutations } from '../../modules/tasks/api/useTasks';
+import { useProjects, projectsMutations } from '../../modules/projects/model/hooks';
+import { TaskList } from '../../modules/tasks/ui/task-list/TaskList';
+import { Layout } from '../../modules/layout/layout/ui/Layout';
+import { Task } from '../../modules/tasks/model/types';
+import { Project } from '../../modules/projects/model/types';
 import styles from './HomePage.module.scss';
-import { TaskFormDialog } from '../../../modules/tasks/task-form-dialog/ui/TaskFormDialog';
-import { ProjectFormDialog } from '../../../modules/projects/project-form-dialog/ui/ProjectFormDialog';
+import { TaskFormDialog } from '../../modules/tasks/ui/task-form-dialog/TaskFormDialog';
+import { ProjectFormDialog } from '../../modules/projects/ui/project-form-dialog/ProjectFormDialog';
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation();

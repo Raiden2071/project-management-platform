@@ -1,4 +1,4 @@
-import { Project } from '../../entities/project/model/types';
+import { Project } from '../../modules/projects/model/types';
 import { v4 as uuidv4 } from 'uuid';
 
 const PROJECTS_KEY = 'projects_data';

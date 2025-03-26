@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Header } from '../../header/ui/Header';
 import { Sidebar } from '../../sidebar/ui/Sidebar';
-import { Project } from '../../../../entities/project/model/types';
+import { Project } from '../../../projects/model/types';
 import styles from './Layout.module.scss';
 
 interface LayoutProps {

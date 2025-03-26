@@ -1,6 +1,6 @@
 import React from 'react';
 import { Task } from '../../model/types';
-import { TaskItem } from '../../task-item/ui/TaskItem';
+import { TaskItem } from '../../ui/task-item/TaskItem';
 import { Typography, Box, CircularProgress, Alert } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import styles from './TaskList.module.scss';

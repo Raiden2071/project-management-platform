@@ -15,9 +15,9 @@ import {
   DialogActions
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Task } from '../../../entities/task/model/types';
-import { Project } from '../../../entities/project/model/types';
+import { Project } from '../../../projects/model/types';
 import styles from './TaskFormDialog.module.scss';
+import { Task } from '../../model/types';
 
 interface TaskFormProps {
   open: boolean;

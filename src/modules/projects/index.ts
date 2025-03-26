@@ -1,1 +1,1 @@
-export * from './project-form-dialog/ui/ProjectFormDialog';
+export * from './ui/project-form-dialog/ProjectFormDialog';
