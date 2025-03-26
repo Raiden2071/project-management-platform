@@ -1,11 +1,11 @@
 import React from 'react';
 import { Drawer, Divider } from '@mui/material';
-import { Project } from '../../../entities/project/model/types';
 import { SidebarHeader } from './SidebarHeader';
 import { NavigationItems } from './NavigationItems';
 import { ProjectsHeader } from './ProjectsHeader';
 import { ProjectsList } from './ProjectsList';
 import styles from './Sidebar.module.scss';
+import { Project } from '../../../projects/model/types';
 
 interface SidebarProps {
   open: boolean;

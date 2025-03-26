@@ -1,5 +1,5 @@
 import useSWR, { mutate } from 'swr';
-import { Project } from './types';
+import { Project } from '../model/types';
 import { projectsApi } from '../../../api/projects';
 
 const PROJECTS_KEY = 'projects';
@@ -15,7 +15,6 @@ export const useProjects = () => {
   };
 };
 
-// Хук для получения проекта по ID
 export const useProject = (id: string) => {
   const { data, error, isLoading } = useSWR(
     id ? `${PROJECT_KEY}-${id}` : null,
@@ -29,13 +28,10 @@ export const useProject = (id: string) => {
   };
 };
 
-// Мутации для проектов
 export const projectsMutations = {
-  // Добавление проекта
   async addProject(project: Omit<Project, 'id' | 'createdAt'>) {
     const newProject = await projectsApi.createProject(project);
     
-    // Обновление кэша
     mutate(
       PROJECTS_KEY,
       (currentProjects: Project[] = []) => [...currentProjects, newProject],
@@ -45,11 +41,9 @@ export const projectsMutations = {
     return newProject;
   },
   
-  // Обновление проекта
   async updateProject(updatedProject: Project) {
     const result = await projectsApi.updateProject(updatedProject);
     
-    // Обновление кэша списка проектов
     mutate(
       PROJECTS_KEY,
       (currentProjects: Project[] = []) =>
@@ -60,11 +54,9 @@ export const projectsMutations = {
     return result;
   },
   
-  // Удаление проекта
   async deleteProject(id: string) {
     await projectsApi.deleteProject(id);
     
-    // Обновление кэша
     mutate(
       PROJECTS_KEY,
       (currentProjects: Project[] = []) => currentProjects.filter(project => project.id !== id),

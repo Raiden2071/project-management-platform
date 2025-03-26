@@ -3,7 +3,7 @@ import { Container, Typography, Box, Button, Paper } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useTranslation } from 'react-i18next';
 import { useTasks, tasksMutations } from '../../modules/tasks/api/useTasks';
-import { useProjects, projectsMutations } from '../../modules/projects/model/hooks';
+import { useProjects, projectsMutations } from '../../modules/projects/hooks/hooks';
 import { TaskList } from '../../modules/tasks/ui/task-list/TaskList';
 import { Layout } from '../../modules/layout/layout/ui/Layout';
 import { Task } from '../../modules/tasks/model/types';

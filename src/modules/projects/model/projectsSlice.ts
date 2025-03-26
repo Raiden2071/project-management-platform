@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Project, ProjectsState } from './types';
 
+const PROJECTS_SLICE_NAME = 'projects';
+
 const initialState: ProjectsState = {
   projects: [],
   loading: false,
@@ -8,7 +10,7 @@ const initialState: ProjectsState = {
 };
 
 export const projectsSlice = createSlice({
-  name: 'projects',
+  name: PROJECTS_SLICE_NAME,
   initialState,
   reducers: {
     fetchProjectsStart: (state) => {
