@@ -1,6 +1,6 @@
 import useSWR, { mutate } from 'swr';
 import { Project } from './types';
-import { projectsApi } from '../../../shared/api/projects';
+import { projectsApi } from '../../../api/projects';
 
 const PROJECTS_KEY = 'projects';
 const PROJECT_KEY = 'project';

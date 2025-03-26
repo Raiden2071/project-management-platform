@@ -1,4 +1,4 @@
-import { Task } from '../../modules/tasks/model/types';
+import { Task } from '../modules/tasks/model/types';
 import { v4 as uuidv4 } from 'uuid';
 
 const TASKS_KEY = 'tasks_data';

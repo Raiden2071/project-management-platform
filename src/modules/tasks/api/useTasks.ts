@@ -1,6 +1,6 @@
 import useSWR, { mutate } from 'swr';
-import { tasksApi } from '../../../shared/api/tasks';
-import { projectsApi } from '../../../shared/api/projects';
+import { tasksApi } from '../../../api/tasks';
+import { projectsApi } from '../../../api/projects';
 import { Project } from '../../projects/model/types';
 import { Task } from '../model/types';
 
