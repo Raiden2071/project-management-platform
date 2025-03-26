@@ -4,13 +4,13 @@ import AddIcon from '@mui/icons-material/Add';
 import { useTranslation } from 'react-i18next';
 import { useTasks, tasksMutations } from '../../../entities/task/model/hooks';
 import { useProjects, projectsMutations } from '../../../entities/project/model/hooks';
-import { TaskList } from '../../../features/task-list/ui/TaskList';
-import { Layout } from '../../../widgets/layout/ui/Layout';
+import { TaskList } from '../../../modules/tasks/task-list/ui/TaskList';
+import { Layout } from '../../../modules/layout/layout/ui/Layout';
 import { Task } from '../../../entities/task/model/types';
 import { Project } from '../../../entities/project/model/types';
 import styles from './HomePage.module.scss';
-import { ProjectFormDialog } from '../../../features/project-form/ui/ProjectForm';
-import { TaskFormDialog } from '../../../features/task-form/ui/TaskForm';
+import { TaskFormDialog } from '../../../modules/tasks/task-form-dialog/ui/TaskFormDialog';
+import { ProjectFormDialog } from '../../../modules/projects/project-form-dialog/ui/ProjectFormDialog';
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation();
