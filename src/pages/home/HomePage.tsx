@@ -11,11 +11,12 @@ import { Project } from '../../modules/projects/model/types';
 import styles from './HomePage.module.scss';
 import { ProjectFormDialog } from '../../modules/projects/ui/project-form-dialog/ProjectFormDialog';
 import { TaskDialog } from '../../modules/tasks/ui/task-dialog/TaskDialog';
+import { useDispatch } from 'react-redux';
+import { closeTaskDialog, openTaskDialog } from '../../redux/reducers/dialogSlice';
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation();
   
-  const [TaskDialogOpen, setTaskDialogOpen] = useState(false);
   const [projectFormOpen, setProjectFormOpen] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
@@ -30,19 +31,21 @@ export const HomePage: React.FC = () => {
   const filteredTasks = selectedProjectId
     ? tasks.filter(task => task.projectId === selectedProjectId)
     : tasks;
+
+    const dispatch = useDispatch();
   
   const handleAddTask = () => {
     setSelectedTaskId(null);
-    setTaskDialogOpen(true);
+    dispatch(openTaskDialog());
   };
   
   const handleEditTask = (task: Task) => {
     setSelectedTaskId(task.id);
-    setTaskDialogOpen(true);
+    dispatch(openTaskDialog());
   };
   
   const handleTaskDialogClose = () => {
-    setTaskDialogOpen(false);
+    dispatch(closeTaskDialog());
     setSelectedTaskId(null);
   };
   
@@ -122,7 +125,6 @@ export const HomePage: React.FC = () => {
       </Container>
       
       <TaskDialog
-        open={TaskDialogOpen}
         onClose={handleTaskDialogClose}
         onSubmit={handleSubmitTask}
         initialValues={selectedTask || undefined}

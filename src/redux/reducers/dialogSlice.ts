@@ -1,22 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface DialogState {
-    TaskDialog: {
+    tasksDialog: {
         open: boolean;
     };
-    projectFormDialog: {
+    projectsDialog: {
         open: boolean;
     };
-
 }
 
 const DIALOGS_SLICE_NAME = 'dialogs';
 
 const initialState: DialogState = {
-    TaskDialog: {
+    tasksDialog: {
         open: false,
     },
-    projectFormDialog: {
+    projectsDialog: {
         open: false,
     },
   };
@@ -27,16 +26,16 @@ export const dialogsSlice = createSlice({
     initialState,
     reducers: {
         openTaskDialog: (state) => {
-            state.TaskDialog.open = true;
+            state.tasksDialog.open = true;
         },
         closeTaskDialog: (state) => {
-            state.TaskDialog.open = false;
+            state.tasksDialog.open = false;
         },
-        openProjectFormDialog: (state) => {
-            state.projectFormDialog.open = true;
+        openProjectDialog: (state) => {
+            state.projectsDialog.open = true;
         },
-        closeProjectFormDialog: (state) => {
-            state.projectFormDialog.open = false;
+        closeProjectDialog: (state) => {
+            state.projectsDialog.open = false;
         },
     },
 });
@@ -44,8 +43,8 @@ export const dialogsSlice = createSlice({
 export const {
     openTaskDialog,
     closeTaskDialog,
-    openProjectFormDialog,
-    closeProjectFormDialog,
+    openProjectDialog,
+    closeProjectDialog,
 } = dialogsSlice.actions;
 
 export default dialogsSlice.reducer;

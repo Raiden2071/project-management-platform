@@ -18,9 +18,10 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Project } from '../../../projects/model/types';
 import styles from './TaskDialog.module.scss';
 import { Task } from '../../model/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../redux/store/store';
 
 interface TaskDialogProps {
-  open: boolean;
   onClose: () => void;
   onSubmit: (task: Omit<Task, 'id' | 'createdAt'>) => void;
   initialValues?: Task;
@@ -28,7 +29,6 @@ interface TaskDialogProps {
 }
 
 export const TaskDialog: React.FC<TaskDialogProps> = ({
-  open,
   onClose,
   onSubmit,
   initialValues,
@@ -42,6 +42,9 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
   const [dueDate, setDueDate] = useState<Date | null>(null);
   const [projectId, setProjectId] = useState<string | undefined>(undefined);
   const [titleError, setTitleError] = useState('');
+
+  // const dispatch = useDispatch();
+  const tasksDialog = useSelector((state: RootState) => state.dialogs.tasksDialog);
   
   useEffect(() => {
     if (initialValues) {
@@ -58,7 +61,7 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
       setProjectId(undefined);
     }
     setTitleError('');
-  }, [initialValues, open]);
+  }, [initialValues, tasksDialog.open]);
   
   const validateForm = (): boolean => {
     let isValid = true;
@@ -94,7 +97,7 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
   };
   
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+    <Dialog open={tasksDialog.open} onClose={onClose} maxWidth="sm" fullWidth>
       <form onSubmit={handleSubmit}>
         <DialogTitle>
           {initialValues ? t('tasks.edit') : t('tasks.add')}
