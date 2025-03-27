@@ -9,13 +9,13 @@ import { Layout } from '../../modules/layout/layout/ui/Layout';
 import { Task } from '../../modules/tasks/model/types';
 import { Project } from '../../modules/projects/model/types';
 import styles from './HomePage.module.scss';
-import { TaskFormDialog } from '../../modules/tasks/ui/task-form-dialog/TaskFormDialog';
 import { ProjectFormDialog } from '../../modules/projects/ui/project-form-dialog/ProjectFormDialog';
+import { TaskDialog } from '../../modules/tasks/ui/task-dialog/TaskDialog';
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation();
   
-  const [taskFormOpen, setTaskFormOpen] = useState(false);
+  const [TaskDialogOpen, setTaskDialogOpen] = useState(false);
   const [projectFormOpen, setProjectFormOpen] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
@@ -33,16 +33,16 @@ export const HomePage: React.FC = () => {
   
   const handleAddTask = () => {
     setSelectedTaskId(null);
-    setTaskFormOpen(true);
+    setTaskDialogOpen(true);
   };
   
   const handleEditTask = (task: Task) => {
     setSelectedTaskId(task.id);
-    setTaskFormOpen(true);
+    setTaskDialogOpen(true);
   };
   
-  const handleTaskFormClose = () => {
-    setTaskFormOpen(false);
+  const handleTaskDialogClose = () => {
+    setTaskDialogOpen(false);
     setSelectedTaskId(null);
   };
   
@@ -121,9 +121,9 @@ export const HomePage: React.FC = () => {
         </Paper>
       </Container>
       
-      <TaskFormDialog
-        open={taskFormOpen}
-        onClose={handleTaskFormClose}
+      <TaskDialog
+        open={TaskDialogOpen}
+        onClose={handleTaskDialogClose}
         onSubmit={handleSubmitTask}
         initialValues={selectedTask || undefined}
         projects={projects}

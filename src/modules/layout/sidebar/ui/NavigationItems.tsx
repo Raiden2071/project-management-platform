@@ -8,7 +8,7 @@ export const NavigationItems: React.FC = () => {
   const { t } = useTranslation();
   const handleAddTask = () => {
     // setSelectedTaskId(null);
-    // setTaskFormOpen(true);
+    // setTaskDialogOpen(true);
   };
 
   return (

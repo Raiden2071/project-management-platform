@@ -10,7 +10,7 @@ export interface Task {
   createdAt: string;
 }
 
-export type TaskFormData = Omit<Task, 'id' | 'createdAt'>;
+export type TaskDialogData = Omit<Task, 'id' | 'createdAt'>;
 
 export interface TasksState {
   tasks: Task[];
