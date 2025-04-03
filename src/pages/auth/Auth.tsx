@@ -15,7 +15,6 @@ const Auth = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement authentication logic
     console.log('Login attempt:', { email, password });
   };
 
