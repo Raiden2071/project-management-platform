@@ -8,14 +8,12 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  FormHelperText,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Project } from '../../../projects/model/types';
 import styles from './TaskDialog.module.scss';
 import { Task } from '../../model/types';
 import { useSelector } from 'react-redux';
@@ -25,14 +23,12 @@ interface TaskDialogProps {
   onClose: () => void;
   onSubmit: (task: Omit<Task, 'id' | 'createdAt'>) => void;
   initialValues?: Task;
-  projects: Project[];
 }
 
 export const TaskDialog: React.FC<TaskDialogProps> = ({
   onClose,
   onSubmit,
   initialValues,
-  projects
 }) => {
   const { t } = useTranslation();
   
@@ -40,7 +36,6 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium');
   const [dueDate, setDueDate] = useState<Date | null>(null);
-  const [projectId, setProjectId] = useState<string | undefined>(undefined);
   const [titleError, setTitleError] = useState('');
 
   // const dispatch = useDispatch();
@@ -52,13 +47,11 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
       setDescription(initialValues.description || '');
       setPriority(initialValues.priority);
       setDueDate(initialValues.dueDate ? new Date(initialValues.dueDate) : null);
-      setProjectId(initialValues.projectId);
     } else {
       setTitle('');
       setDescription('');
       setPriority('medium');
       setDueDate(null);
-      setProjectId(undefined);
     }
     setTitleError('');
   }, [initialValues, tasksDialog.open]);
@@ -89,7 +82,6 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
       completed: initialValues?.completed || false,
       priority,
       dueDate: dueDate?.toISOString(),
-      projectId,
     };
     
     onSubmit(taskData);
@@ -152,28 +144,6 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
                 }
               }}
             />
-            
-            {projects.length > 0 && (
-              <FormControl fullWidth margin="normal">
-                <InputLabel id="project-label">{t('form.project')}</InputLabel>
-                <Select
-                  labelId="project-label"
-                  value={projectId || ''}
-                  onChange={(e) => setProjectId(e.target.value || undefined)}
-                  label={t('form.project')}
-                >
-                  <MenuItem value="">
-                    <em>{t('form.noProject')}</em>
-                  </MenuItem>
-                  {projects.map((project) => (
-                    <MenuItem key={project.id} value={project.id}>
-                      {project.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-                <FormHelperText>{t('form.selectProject')}</FormHelperText>
-              </FormControl>
-            )}
           </Stack>
         </DialogContent>
         
