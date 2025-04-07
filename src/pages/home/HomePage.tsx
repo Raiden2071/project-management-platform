@@ -25,11 +25,11 @@ export const HomePage: React.FC = () => {
   const { projects, isLoading: projectsLoading } = useProjects();
   
   const selectedTask = selectedTaskId 
-    ? tasks.find(task => task.id === selectedTaskId) 
+    ? tasks.find((task: Task) => task.id === selectedTaskId) 
     : null;
   
   const filteredTasks = selectedProjectId
-    ? tasks.filter(task => task.projectId === selectedProjectId)
+    ? tasks.filter((task: Task) => task.projectId === selectedProjectId)
     : tasks;
 
     const dispatch = useDispatch();

@@ -4,10 +4,11 @@ export interface Task {
   description?: string;
   completed: boolean;
   priority: 'low' | 'medium' | 'high';
-  dueDate?: string;
+  startDate: Date;
+  dueDate?: Date;
   projectId?: string;
   projectName?: string;
-  createdAt: string;
+  createdAt: Date;
 }
 
 export type TaskDialogData = Omit<Task, 'id' | 'createdAt'>;

@@ -8,7 +8,6 @@ A learning project for creating a task manager (Todoist clone) using a modern Re
 - **Vite** - a fast application bundler  
 - **Feature-Sliced Design** (FSD) - architectural methodology  
 - **Redux Toolkit** - state management  
-- **SWR** - data fetching and caching  
 - **Material UI** - UI components  
 - **i18next** - internationalization  
 - **SCSS Modules** - component styling  

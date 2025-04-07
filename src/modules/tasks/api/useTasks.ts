@@ -1,32 +1,29 @@
-import useSWR, { mutate } from 'swr';
 import { tasksApi } from '../../../api/tasks';
-import { projectsApi } from '../../../api/projects';
-import { Project } from '../../projects/model/types';
 import { Task } from '../model/types';
 
 // Keys for SWR
-const TASKS_KEY = 'tasks';
-const TASK_KEY = 'task';
+// const TASKS_KEY = 'tasks';
+// const TASK_KEY = 'task';
 
 export const useTasks = () => {
-  const { data, error, isLoading } = useSWR(TASKS_KEY, tasksApi.getTasks);
-  const { data: projects = [] } = useSWR('projects', projectsApi.getProjects);
+  // const { data, error, isLoading } = useSWR(TASKS_KEY, tasksApi.getTasks);
+  // const { data: projects = [] } = useSWR('projects', projectsApi.getProjects);
   
-  const tasksWithProjectNames = (data || []).map((task: Task) => {
-    if (task.projectId) {
-      const project = projects.find((p: Project) => p.id === task.projectId);
-      return {
-        ...task,
-        projectName: project ? project.name : undefined
-      };
-    }
-    return task;
-  });
+  // const tasksWithProjectNames = (data || []).map((task: Task) => {
+  //   if (task.projectId) {
+  //     const project = projects.find((p: Project) => p.id === task.projectId);
+  //     return {
+  //       ...task,
+  //       projectName: project ? project.name : undefined
+  //     };
+  //   }
+  //   return task;
+  // });
   
   return {
-    tasks: tasksWithProjectNames,
-    isLoading,
-    error
+    tasks: [],
+    isLoading: false,
+    error: null
   };
 };
 
@@ -34,11 +31,11 @@ export const tasksMutations = {
   async addTask(task: Omit<Task, 'id' | 'createdAt'>) {
     const newTask = await tasksApi.createTask(task);
     
-    mutate(
-      TASKS_KEY,
-      (currentTasks: Task[] = []) => [...currentTasks, newTask],
-      false
-    );
+    // mutate(
+    //   TASKS_KEY,
+    //   (currentTasks: Task[] = []) => [...currentTasks, newTask],
+    //   false
+    // );
     
     return newTask;
   },
@@ -46,14 +43,14 @@ export const tasksMutations = {
   async updateTask(updatedTask: Task) {
     const result = await tasksApi.updateTask(updatedTask);
     
-    mutate(
-      TASKS_KEY,
-      (currentTasks: Task[] = []) =>
-        currentTasks.map(task => (task.id === updatedTask.id ? updatedTask : task)),
-      false
-    );
+    // mutate(
+    //   TASKS_KEY,
+    //   (currentTasks: Task[] = []) =>
+    //     currentTasks.map(task => (task.id === updatedTask.id ? updatedTask : task)),
+    //   false
+    // );
     
-    mutate(`${TASK_KEY}-${updatedTask.id}`, updatedTask, false);
+    // mutate(`${TASK_KEY}-${updatedTask.id}`, updatedTask, false);
     
     return result;
   },
@@ -61,27 +58,27 @@ export const tasksMutations = {
   async deleteTask(id: string) {
     await tasksApi.deleteTask(id);
     
-    mutate(
-      TASKS_KEY,
-      (currentTasks: Task[] = []) => currentTasks.filter(task => task.id !== id),
-      false
-    );
+    // mutate(
+    //   TASKS_KEY,
+    //   (currentTasks: Task[] = []) => currentTasks.filter(task => task.id !== id),
+    //   false
+    // );
     
-    mutate(`${TASK_KEY}-${id}`, null, false);
+    // mutate(`${TASK_KEY}-${id}`, null, false);
   },
   
   async toggleTaskStatus(id: string) {
     const updatedTask = await tasksApi.toggleTaskStatus(id);
     
     if (updatedTask) {
-      mutate(
-        TASKS_KEY,
-        (currentTasks: Task[] = []) =>
-          currentTasks.map(task => (task.id === id ? updatedTask : task)),
-        false
-      );
+      // mutate(
+      //   TASKS_KEY,
+      //   (currentTasks: Task[] = []) =>
+      //     currentTasks.map(task => (task.id === id ? updatedTask : task)),
+      //   false
+      // );
       
-      mutate(`${TASK_KEY}-${id}`, updatedTask, false);
+      // mutate(`${TASK_KEY}-${id}`, updatedTask, false);
     }
     
     return updatedTask;
