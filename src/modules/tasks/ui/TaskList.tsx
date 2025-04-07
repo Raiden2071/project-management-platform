@@ -22,7 +22,7 @@ import {
   SelectChangeEvent
 } from '@mui/material';
 import { Add as AddIcon, Delete as DeleteIcon, Edit as EditIcon } from '@mui/icons-material';
-import { useGetTasksQuery, useCreateTaskMutation, useDeleteTaskMutation } from '../api';
+import { useGetTasksQuery, useCreateTaskMutation, useDeleteTaskMutation } from '../api/tasksApi';
 import { TaskDialogData } from '../model/types';
 
 const initialTaskForm: TaskDialogData = {
@@ -30,10 +30,11 @@ const initialTaskForm: TaskDialogData = {
   description: '',
   completed: false,
   priority: 'medium',
+  startDate: new Date(),
 };
 
 export const TaskList: React.FC = () => {
-  const { data: tasks, isLoading, isError } = useGetTasksQuery();
+  const { data: tasks = [], isLoading, isError } = useGetTasksQuery();
   const [createTask, { isLoading: isCreating }] = useCreateTaskMutation();
   const [deleteTask] = useDeleteTaskMutation();
   

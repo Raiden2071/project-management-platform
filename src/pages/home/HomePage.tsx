@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Container, Typography, Box, Button, Paper } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useTranslation } from 'react-i18next';
-import { useTasks, tasksMutations } from '../../modules/tasks/api/useTasks';
 import { TaskList } from '../../modules/tasks/ui/task-list/TaskList';
 import { Layout } from '../../modules/layout/layout/ui/Layout';
 import { Task } from '../../modules/tasks/model/types';
@@ -10,13 +9,14 @@ import styles from './HomePage.module.scss';
 import { TaskDialog } from '../../modules/tasks/ui/task-dialog/TaskDialog';
 import { useDispatch } from 'react-redux';
 import { closeTaskDialog, openTaskDialog } from '../../redux/reducers/dialogSlice';
+import { useGetTasksQuery } from '../../modules/tasks/api/tasksApi';
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation();
   
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
   
-  const { tasks, isLoading: tasksLoading, error: tasksError } = useTasks();
+  const { data: tasks = [], isLoading: tasksLoading, error: tasksError = null } = useGetTasksQuery();
   
   const selectedTask = selectedTaskId 
     ? tasks.find((task: Task) => task.id === selectedTaskId) 
@@ -42,23 +42,23 @@ export const HomePage: React.FC = () => {
   };
   
   const handleSubmitTask = async (taskData: Omit<Task, 'id' | 'createdAt'>) => {
-    if (selectedTaskId) {
-      await tasksMutations.updateTask({
-        ...taskData,
-        id: selectedTaskId,
-        createdAt: selectedTask?.createdAt || new Date().toISOString()
-      });
-    } else {
-      await tasksMutations.addTask(taskData);
-    }
+    // if (selectedTaskId) {
+    //   await tasksMutations.updateTask({
+    //     ...taskData,
+    //     id: selectedTaskId,
+    //     createdAt: selectedTask?.createdAt || new Date().toISOString()
+    //   });
+    // } else {
+    //   await tasksMutations.addTask(taskData);
+    // }
   };
   
   const handleToggleTaskStatus = async (id: string) => {
-    await tasksMutations.toggleTaskStatus(id);
+    // await tasksMutations.toggleTaskStatus(id);
   };
   
   const handleDeleteTask = async (id: string) => {
-    await tasksMutations.deleteTask(id);
+    // await tasksMutations.deleteTask(id);
   };
   
   const pageTitle = t('tasks.title') 
@@ -85,7 +85,7 @@ export const HomePage: React.FC = () => {
           <TaskList
             tasks={filteredTasks}
             isLoading={tasksLoading}
-            error={tasksError}
+            error={tasksError as Error | null}
             onToggle={handleToggleTaskStatus}
             onEdit={handleEditTask}
             onDelete={handleDeleteTask}

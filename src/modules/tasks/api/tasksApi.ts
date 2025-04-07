@@ -4,15 +4,28 @@ import { Task } from '../model/types'
 // Define a service using a base URL and expected endpoints
 export const tasksApi = createApi({
   reducerPath: 'tasksApi',
-  baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_API_URL}/tasks` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${import.meta.env.VITE_API_URL}/tasks` }),
   endpoints: (build) => ({
     getTasks: build.query<Task[], void>({
       query: () => ``,
     }),
+    createTask: build.mutation<Task, Task>({
+      query: (task) => ({
+        url: '',
+        method: 'POST',
+        body: task,
+      }),
+    }),
+    deleteTask: build.mutation<void, string>({
+      query: (id) => ({
+        url: `/${id}`,
+        method: 'DELETE',
+      }),
+    }),
     getFilteredTasks: build.query<Task[], void>({
-        query: (searchParams) => `tasks?${searchParams}`,
+        query: (searchParams) => `?${searchParams}`,
       }),
   }),
 })
 
-export const { useGetTasksQuery, useGetFilteredTasksQuery } = tasksApi
+export const { useGetTasksQuery, useCreateTaskMutation, useDeleteTaskMutation, useGetFilteredTasksQuery } = tasksApi
