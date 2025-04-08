@@ -1,9 +1,11 @@
+import { TaskPriority } from '../../../models/enums';
+
 export interface Task {
   id: string;
   title: string;
   description?: string;
   completed: boolean;
-  priority: 'low' | 'medium' | 'high';
+  priority: TaskPriority;
   startDate: Date;
   dueDate?: Date;
   projectId?: string;

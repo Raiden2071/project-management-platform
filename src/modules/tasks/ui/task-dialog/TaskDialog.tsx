@@ -18,6 +18,7 @@ import styles from './TaskDialog.module.scss';
 import { Task } from '../../model/types';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store/store';
+import { TaskPriority } from '../../../../models/enums';
 
 interface TaskDialogProps {
   onClose: () => void;
@@ -34,8 +35,8 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
   
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium');
-  const [dueDate, setDueDate] = useState<Date | null>(null);
+  const [priority, setPriority] = useState<TaskPriority>(TaskPriority.medium);
+  const [dueDate, setDueDate] = useState<Date>(new Date());
   const [titleError, setTitleError] = useState('');
 
   // const dispatch = useDispatch();
@@ -46,12 +47,12 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
       setTitle(initialValues.title);
       setDescription(initialValues.description || '');
       setPriority(initialValues.priority);
-      setDueDate(initialValues.dueDate ? new Date(initialValues.dueDate) : null);
+      setDueDate(initialValues.dueDate ? new Date(initialValues.dueDate) : new Date());
     } else {
       setTitle('');
       setDescription('');
-      setPriority('medium');
-      setDueDate(null);
+      setPriority(TaskPriority.medium);
+      setDueDate(new Date());
     }
     setTitleError('');
   }, [initialValues, tasksDialog.open]);
@@ -81,7 +82,8 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
       description: description.trim() || undefined,
       completed: initialValues?.completed || false,
       priority,
-      dueDate: dueDate?.toISOString(),
+      startDate: new Date(),
+      dueDate,
     };
     
     onSubmit(taskData);
@@ -124,19 +126,19 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
               <Select
                 labelId="priority-label"
                 value={priority}
-                onChange={(e) => setPriority(e.target.value as 'low' | 'medium' | 'high')}
+                onChange={(e) => setPriority(e.target.value as TaskPriority)}
                 label={t('tasks.priority')}
               >
-                <MenuItem value="low">{t('priority.low')}</MenuItem>
-                <MenuItem value="medium">{t('priority.medium')}</MenuItem>
-                <MenuItem value="high">{t('priority.high')}</MenuItem>
+                <MenuItem value={TaskPriority.low}>{t('priority.low')}</MenuItem>
+                <MenuItem value={TaskPriority.medium}>{t('priority.medium')}</MenuItem>
+                <MenuItem value={TaskPriority.high}>{t('priority.high')}</MenuItem>
               </Select>
             </FormControl>
             
             <DatePicker
               label={t('tasks.dueDate')}
               value={dueDate}
-              onChange={(newValue: Date | null) => setDueDate(newValue)}
+              onChange={(newValue: Date | null) => setDueDate(newValue || new Date())}
               slotProps={{
                 textField: {
                   fullWidth: true,
