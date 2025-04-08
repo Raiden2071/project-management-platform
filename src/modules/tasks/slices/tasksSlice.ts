@@ -5,6 +5,7 @@ const initialState: TasksState = {
   tasks: [],
   loading: false,
   error: null,
+  selectedTaskId: null,
 };
 
 export const tasksSlice = createSlice({
@@ -41,6 +42,9 @@ export const tasksSlice = createSlice({
         state.tasks[index].completed = !state.tasks[index].completed;
       }
     },
+    setSelectedTaskId: (state, action: PayloadAction<string | null>) => {
+      state.selectedTaskId = action.payload;
+    },
   },
 });
 
@@ -52,6 +56,7 @@ export const {
   updateTask,
   deleteTask,
   toggleTaskStatus,
+  setSelectedTaskId,
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer; 

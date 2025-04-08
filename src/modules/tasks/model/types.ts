@@ -19,6 +19,7 @@ export interface TasksState {
   tasks: Task[];
   loading: boolean;
   error: string | null;
+  selectedTaskId: string | null;
 }
 
 export enum TaskFilter {

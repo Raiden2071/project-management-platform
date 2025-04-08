@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Typography, Box, Button, Paper } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useTranslation } from 'react-i18next';
@@ -7,14 +7,17 @@ import { Layout } from '../../modules/layout/layout/ui/Layout';
 import { Task } from '../../modules/tasks/model/types';
 import styles from './HomePage.module.scss';
 import { TaskDialog } from '../../modules/tasks/ui/task-dialog/TaskDialog';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeTaskDialog, openTaskDialog } from '../../redux/reducers/dialogSlice';
+import { setSelectedTaskId } from '../../modules/tasks/slices/tasksSlice';
 import { useGetTasksQuery } from '../../modules/tasks/api/tasksApi';
+import { RootState } from '../../redux/store/store';
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   
-  const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
+  const selectedTaskId = useSelector((state: RootState) => state.tasks.selectedTaskId);
   
   const { data: tasks = [], isLoading: tasksLoading, error: tasksError = null } = useGetTasksQuery();
   
@@ -23,33 +26,28 @@ export const HomePage: React.FC = () => {
     : null;
   
   const filteredTasks = tasks;
-
-    const dispatch = useDispatch();
   
   const handleAddTask = () => {
-    setSelectedTaskId(null);
+    dispatch(setSelectedTaskId(null));
     dispatch(openTaskDialog());
   };
   
   const handleEditTask = (task: Task) => {
-    setSelectedTaskId(task.id);
+    dispatch(setSelectedTaskId(task.id));
     dispatch(openTaskDialog());
   };
   
   const handleTaskDialogClose = () => {
     dispatch(closeTaskDialog());
-    setSelectedTaskId(null);
+    dispatch(setSelectedTaskId(null));
   };
-  
-  
-  const pageTitle = t('tasks.title') 
   
   return (
     <Layout>
       <Container maxWidth="lg" className={styles.container}>
         <Box className={styles.pageHeader}>
           <Typography variant="h4" component="h1">
-            {pageTitle}
+            {t('tasks.title')}
           </Typography>
           
           <Button
