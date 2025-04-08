@@ -7,7 +7,7 @@ export interface Task {
   completed: boolean;
   priority: TaskPriority;
   startDate: Date;
-  dueDate?: Date;
+  dueDate: Date;
   projectId?: string;
   projectName?: string;
   createdAt: Date;

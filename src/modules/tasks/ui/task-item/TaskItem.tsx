@@ -8,7 +8,6 @@ import {
   Box 
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import FlagIcon from '@mui/icons-material/Flag';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -20,34 +19,29 @@ import { Task } from '../../model/types';
 
 interface TaskItemProps {
   task: Task;
-  onToggle: (id: string) => void;
   onEdit?: (task: Task) => void;
-  onDelete?: (id: string) => void;
 }
 
 export const TaskItem: React.FC<TaskItemProps> = ({
   task,
-  onToggle,
   onEdit,
-  onDelete,
 }) => {
   const { t } = useTranslation();
   
   const isDueDate = !!task.dueDate;
-  const isOverdue = isDueDate && new Date(task.dueDate as string) < new Date() && !task.completed;
+  const isOverdue = isDueDate && task.dueDate < new Date() && !task.completed;
   
   const cardClasses = `${styles.taskItem} ${task.completed ? styles.completed : ''}`;
   const priorityClass = styles[task.priority];
   
   const formattedDate = isDueDate
-    ? format(new Date(task.dueDate as string), 'MMM d', { locale: enUS })
+    ? format(task.dueDate, 'MMM d', { locale: enUS })
     : t('tasks.noDueDate');
   
   return (
     <Card className={cardClasses}>
       <Checkbox
         checked={task.completed}
-        onChange={() => onToggle(task.id)}
         className={styles.checkbox}
         color="primary"
       />
@@ -101,7 +95,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
           </IconButton>
         )}
         
-        {onDelete && (
+        {/* {onDelete && (
           <IconButton
             size="small"
             onClick={() => onDelete(task.id)}
@@ -109,7 +103,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
           >
             <DeleteIcon fontSize="small" />
           </IconButton>
-        )}
+        )} */}
       </div>
     </Card>
   );

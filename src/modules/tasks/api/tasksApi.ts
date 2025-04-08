@@ -9,8 +9,8 @@ export const tasksApi = createApi({
     getTasks: build.query<Task[], void>({
       query: () => ``,
     }),
-    createTask: build.mutation<Task, Task>({
-      query: (task) => ({
+    createTask: build.mutation<Task, Omit<Task, 'id' | 'createdAt'>>({
+      query: (task: Omit<Task, "id" | "createdAt">) => ({
         url: '',
         method: 'POST',
         body: task,
@@ -26,6 +26,6 @@ export const tasksApi = createApi({
         query: (searchParams) => `?${searchParams}`,
       }),
   }),
-})
+});
 
 export const { useGetTasksQuery, useCreateTaskMutation, useDeleteTaskMutation, useGetFilteredTasksQuery } = tasksApi

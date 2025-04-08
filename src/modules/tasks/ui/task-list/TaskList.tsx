@@ -9,18 +9,14 @@ interface TaskListProps {
   tasks: Task[];
   isLoading: boolean;
   error: Error | null;
-  onToggle: (id: string) => void;
   onEdit?: (task: Task) => void;
-  onDelete?: (id: string) => void;
 }
 
 export const TaskList: React.FC<TaskListProps> = ({
   tasks,
   isLoading,
   error,
-  onToggle,
   onEdit,
-  onDelete,
 }) => {
   const { t } = useTranslation();
 
@@ -57,9 +53,7 @@ export const TaskList: React.FC<TaskListProps> = ({
         <TaskItem
           key={task.id}
           task={task}
-          onToggle={onToggle}
           onEdit={onEdit}
-          onDelete={onDelete}
         />
       ))}
     </div>

@@ -41,25 +41,6 @@ export const HomePage: React.FC = () => {
     setSelectedTaskId(null);
   };
   
-  const handleSubmitTask = async (taskData: Omit<Task, 'id' | 'createdAt'>) => {
-    // if (selectedTaskId) {
-    //   await tasksMutations.updateTask({
-    //     ...taskData,
-    //     id: selectedTaskId,
-    //     createdAt: selectedTask?.createdAt || new Date().toISOString()
-    //   });
-    // } else {
-    //   await tasksMutations.addTask(taskData);
-    // }
-  };
-  
-  const handleToggleTaskStatus = async (id: string) => {
-    // await tasksMutations.toggleTaskStatus(id);
-  };
-  
-  const handleDeleteTask = async (id: string) => {
-    // await tasksMutations.deleteTask(id);
-  };
   
   const pageTitle = t('tasks.title') 
   
@@ -86,16 +67,13 @@ export const HomePage: React.FC = () => {
             tasks={filteredTasks}
             isLoading={tasksLoading}
             error={tasksError as Error | null}
-            onToggle={handleToggleTaskStatus}
             onEdit={handleEditTask}
-            onDelete={handleDeleteTask}
           />
         </Paper>
       </Container>
       
       <TaskDialog
         onClose={handleTaskDialogClose}
-        onSubmit={handleSubmitTask}
         initialValues={selectedTask || undefined}
       />
     </Layout>
