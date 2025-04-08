@@ -12,7 +12,7 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import FlagIcon from '@mui/icons-material/Flag';
 import FolderIcon from '@mui/icons-material/Folder';
 import { useTranslation } from 'react-i18next';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import styles from './TaskItem.module.scss';
 import { Task } from '../../model/types';
@@ -29,13 +29,14 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   const { t } = useTranslation();
   
   const isDueDate = !!task.dueDate;
-  const isOverdue = isDueDate && task.dueDate < new Date() && !task.completed;
+  const dueDate = isDueDate ? (typeof task.dueDate === 'string' ? parseISO(task.dueDate) : task.dueDate) : null;
+  const isOverdue = isDueDate && dueDate && dueDate < new Date() && !task.completed;
   
   const cardClasses = `${styles.taskItem} ${task.completed ? styles.completed : ''}`;
   const priorityClass = styles[task.priority];
   
-  const formattedDate = isDueDate
-    ? format(task.dueDate, 'MMM d', { locale: enUS })
+  const formattedDate = isDueDate && dueDate
+    ? format(dueDate, 'MMM d', { locale: enUS })
     : t('tasks.noDueDate');
   
   return (
