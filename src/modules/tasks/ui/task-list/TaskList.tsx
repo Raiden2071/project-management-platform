@@ -9,14 +9,12 @@ interface TaskListProps {
   tasks: Task[];
   isLoading: boolean;
   error: Error | null;
-  onEdit?: (task: Task) => void;
 }
 
 export const TaskList: React.FC<TaskListProps> = ({
   tasks,
   isLoading,
   error,
-  onEdit,
 }) => {
   const { t } = useTranslation();
 
@@ -53,7 +51,6 @@ export const TaskList: React.FC<TaskListProps> = ({
         <TaskItem
           key={task.id}
           task={task}
-          onEdit={onEdit}
         />
       ))}
     </div>

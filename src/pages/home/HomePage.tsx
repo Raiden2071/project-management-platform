@@ -32,11 +32,6 @@ export const HomePage: React.FC = () => {
     dispatch(openTaskDialog());
   };
   
-  const handleEditTask = (task: Task) => {
-    dispatch(setSelectedTaskId(task.id));
-    dispatch(openTaskDialog());
-  };
-  
   const handleTaskDialogClose = () => {
     dispatch(closeTaskDialog());
     dispatch(setSelectedTaskId(null));
@@ -65,7 +60,6 @@ export const HomePage: React.FC = () => {
             tasks={filteredTasks}
             isLoading={tasksLoading}
             error={tasksError as Error | null}
-            onEdit={handleEditTask}
           />
         </Paper>
       </Container>

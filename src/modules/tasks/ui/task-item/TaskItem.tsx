@@ -16,17 +16,24 @@ import { format, parseISO } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import styles from './TaskItem.module.scss';
 import { Task } from '../../model/types';
+import { setSelectedTaskId } from '../../slices/tasksSlice';
+import { useDispatch } from 'react-redux';
+import { openTaskDialog } from '../../../../redux/reducers/dialogSlice';
 
 interface TaskItemProps {
   task: Task;
-  onEdit?: (task: Task) => void;
 }
 
 export const TaskItem: React.FC<TaskItemProps> = ({
   task,
-  onEdit,
 }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const handleEditTask = (task: Task) => {
+    dispatch(setSelectedTaskId(task.id));
+    dispatch(openTaskDialog());
+  };
   
   const isDueDate = !!task.dueDate;
   const dueDate = isDueDate ? (typeof task.dueDate === 'string' ? parseISO(task.dueDate) : task.dueDate) : null;
@@ -86,15 +93,13 @@ export const TaskItem: React.FC<TaskItemProps> = ({
       </div>
       
       <div className={styles.actions}>
-        {onEdit && (
-          <IconButton 
-            size="small" 
-            onClick={() => onEdit(task)}
-            aria-label={t('tasks.edit')}
-          >
-            <EditIcon fontSize="small" />
-          </IconButton>
-        )}
+        <IconButton 
+          size="small" 
+          onClick={() => handleEditTask(task)}
+          aria-label={t('tasks.edit')}
+        >
+          <EditIcon fontSize="small" />
+        </IconButton>
         
         {/* {onDelete && (
           <IconButton

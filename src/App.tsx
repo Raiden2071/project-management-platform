@@ -3,13 +3,14 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 
-import { HomePage } from './pages/home/HomePage';
 import { store } from './redux/store/store';
 import './App.scss';
 import './i18n';
 
 import { Provider as ReduxProvider } from 'react-redux';
 import { enUS } from 'date-fns/locale';
+import { Layout } from './modules/layout/layout/ui/Layout';
+import { Outlet } from 'react-router-dom';
 
 // Material UI
 const theme = createTheme({
@@ -29,8 +30,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={enUS}>
           <CssBaseline />
-          {/* {children} */}
-          <HomePage />
+          <Layout>
+            <Outlet />
+          </Layout>
         </LocalizationProvider>
       </ThemeProvider>
     </ReduxProvider>

@@ -19,7 +19,7 @@ import { Task } from '../../model/types';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store/store';
 import { TaskPriority } from '../../../../models/enums';
-import { useCreateTaskMutation } from '../../api/tasksApi';
+import { useCreateTaskMutation, useEditTaskMutation } from '../../api/tasksApi';
 
 interface TaskDialogProps {
   onClose: () => void;
@@ -32,6 +32,7 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
 }) => {
   const { t } = useTranslation();
   const [createTask] = useCreateTaskMutation();
+  const [editTask] = useEditTaskMutation();
   
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -88,7 +89,11 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
       dueDate,
     };
 
-    await createTask(task);
+    if (initialValues) {
+      await editTask({ id: initialValues.id, ...task });
+    } else {
+      await createTask(task);
+    }
     onClose();
   };
 
